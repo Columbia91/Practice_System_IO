@@ -50,11 +50,9 @@ namespace Practice_System_IO
                     streamWriter.WriteLine(data[i]);
                 }
             }
-            string newData;
-            using (StreamReader sr = new StreamReader(path))
-            {
-                newData = sr.ReadToEnd();
-            }
+            
+            var result = File.ReadAllBytes(path);
+            string newData = Encoding.UTF8.GetString(result);
 
             int symbolsCount = 256;
             int count = 0;
@@ -67,10 +65,10 @@ namespace Practice_System_IO
                         count++;
                     }
                 }
-                Console.WriteLine($"{((char)i).ToString()}: {count}" );
+                if(count > 0)
+                    Console.WriteLine($"{((char)i).ToString()}: {count}" );
                 count = 0;
             }
-            
         }
     }
 }
