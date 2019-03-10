@@ -50,12 +50,15 @@ namespace Practice_System_IO
                     streamWriter.WriteLine(data[i]);
                 }
             }
-            
+
+            Console.WriteLine("\nЧисло появлений символов в заданном файле:");
             var result = File.ReadAllBytes(path);
             string newData = Encoding.UTF8.GetString(result);
 
             int symbolsCount = 256;
             int count = 0;
+            int unknownSymbol = 10, unknownSymbol2 = 13;
+
             for (int i = 0; i < symbolsCount; i++)
             {
                 for (int j = 0; j < newData.Length; j++)
@@ -65,7 +68,7 @@ namespace Practice_System_IO
                         count++;
                     }
                 }
-                if(count > 0)
+                if(count > 0 && i != unknownSymbol && i != unknownSymbol2)
                     Console.WriteLine($"{((char)i).ToString()}: {count}" );
                 count = 0;
             }
